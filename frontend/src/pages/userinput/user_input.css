@@ -1,0 +1,118 @@
+/* user_input.css */
+
+.user-input-page {
+    min-height: 100vh;
+    background: #f5f7fa;
+    color: #1f2937;
+}
+
+/* Navbar */
+.navbar {
+    height: 70px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.logo {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links button {
+    padding: 9px 16px;
+    border: none;
+    border-radius: 6px;
+
+    background: transparent;
+    color: #374151;
+
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.nav-links button:hover {
+    background: #f3f4f6;
+}
+
+/* Main content */
+.user-input-content {
+    min-height: calc(100vh - 70px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+}
+
+.user-input-content h1 {
+    margin-bottom: 10px;
+    font-size: 36px;
+}
+
+.user-input-content p {
+    margin-bottom: 25px;
+    color: #6b7280;
+}
+
+/* Input */
+.user-input-content input {
+    width: 320px;
+    padding: 12px 15px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    font-size: 16px;
+    outline: none;
+}
+
+.user-input-content input:focus {
+    border-color: #6366f1;
+}
+
+/* Submit button */
+.user-input-content > button {
+    margin-top: 15px;
+
+    padding: 12px 25px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #6366f1;
+    color: white;
+
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.user-input-content > button:hover {
+    background: #4f46e5;
+}
+
+/* Greeting */
+.greeting {
+    margin-top: 25px;
+    padding: 12px 20px;
+
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+
+    color: #111827 !important;
+    font-size: 18px;
+    font-weight: 500;
+}
