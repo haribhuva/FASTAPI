@@ -1,6 +1,6 @@
 import "./user_input.css";
-import HomePage from "../homepage/homepage";
-import React, { useState } from "react";
+// import HomePage from "../homepage/homepage";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { greetUser } from "../../api/api";
 
