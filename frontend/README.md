@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend (Next.js + React 19)
 
-## Getting Started
+This is the frontend client for the application, built with **Next.js 16** (App Router), **React 19**, **TypeScript**, **Tailwind CSS v4**, and **shadcn/ui**.
 
-First, run the development server:
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Library**: [React 19](https://react.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Component Primitives**: [shadcn/ui](https://ui.shadcn.com/) & Base UI
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Linter**: [ESLint](https://eslint.org/) (`eslint-config-next`)
+
+## 🚀 Getting Started
+
+First, ensure dependencies are installed:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📜 Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev`: Starts the Next.js development server on port 3000 with HMR.
+- `npm run build`: Builds the application for production.
+- `npm run start`: Starts the production server after building.
+- `npm run lint`: Runs ESLint to check for code quality and syntax issues.
 
-## Learn More
+## 📁 Directory Structure
 
-To learn more about Next.js, take a look at the following resources:
+```text
+frontend/
+├── app/                  # Next.js App Router pages, styles, and layouts
+│   ├── layout.tsx        # Root layout component
+│   ├── page.tsx          # Main entry route
+│   ├── globals.css       # Tailwind CSS styles and theme definitions
+│   └── homepage/         # Homepage route
+├── components/           # UI components (shadcn/ui & custom primitives)
+│   └── ui/               # Reusable shadcn/ui components (e.g. Button)
+├── lib/                  # Shared helper functions (e.g. cn class merging)
+├── public/               # Static assets (images, icons, SVGs)
+├── components.json       # shadcn/ui configuration
+├── next.config.ts        # Next.js configuration
+├── postcss.config.mjs    # PostCSS configuration
+└── package.json          # Frontend manifest and scripts
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

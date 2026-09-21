@@ -1,14 +1,15 @@
-# FastAPI + React Full-Stack Application
+# FastAPI + Next.js Full-Stack Application
 
 [![Python](https://img.shields.io/badge/Python-3.12%2B-blue?logo=python&logoColor=white)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.141%2B-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![Next.js](https://img.shields.io/badge/Next.js-16.3%2B-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2%2B-61DAFB?logo=react&logoColor=black)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-8.2%2B-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4.0-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Package Manager: uv](https://img.shields.io/badge/uv-Package_Manager-DE5B43?logo=astral&logoColor=white)](https://github.com/astral-sh/uv)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A modern, full-stack web application workspace combining a high-performance **FastAPI** backend with a responsive **React 19 & TypeScript** frontend. Built for rapid development, testing API integrations, and scalable layered architecture.
+A modern, full-stack web application workspace combining a high-performance **FastAPI** backend with a responsive **Next.js 16 & React 19** frontend. Built for rapid development, testing API integrations, and scalable layered architecture.
 
 ---
 
@@ -36,12 +37,12 @@ A modern, full-stack web application workspace combining a high-performance **Fa
 ## ⚡ Features
 
 - **High-Performance FastAPI Backend**: Async-ready Python backend powered by Uvicorn and Pydantic v2 validation.
-- **Modern React 19 Frontend**: Built with TypeScript, Vite HMR, and React Router v7 for seamless client-side navigation.
+- **Modern Next.js 16 Frontend**: Built with React 19, TypeScript, Next.js App Router, Tailwind CSS v4, and shadcn/ui components.
 - **Blazing Fast Package Management**: Python dependencies managed with **[uv](https://github.com/astral-sh/uv)** for fast virtual environment management and deterministic locks.
 - **Layered Architecture**: Clean separation of concerns across API endpoints, data models, services, and web routers.
 - **Interactive UI Testing**: Dynamic forms and components for real-time testing of backend API responses.
 - **Built-in API Docs**: Auto-generated interactive OpenAPI docs available via Swagger UI and ReDoc.
-- **Code Quality & Testing**: Configured with `pytest`, `black` code formatter, and `oxlint` for frontend linting.
+- **Code Quality & Testing**: Configured with `pytest` & `black` for backend testing/formatting, and `ESLint` for frontend linting.
 
 ---
 
@@ -56,11 +57,12 @@ A modern, full-stack web application workspace combining a high-performance **Fa
 - **Testing & Tooling**: Pytest, HTTPX, Black
 
 ### Frontend
-- **Framework**: [React 19](https://react.dev/)
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Library**: [React 19](https://react.dev/)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Routing**: React Router DOM (v7+)
-- **Linter**: Oxlint
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com/) & Base UI
+- **Linter**: ESLint (`eslint-config-next`)
 
 ---
 
@@ -82,16 +84,17 @@ FASTAPI/
 │       ├── service/              # Business logic & in-memory services
 │       ├── web/                  # Router handlers
 │       └── test/                 # Test suite & pytest fixtures
-├── frontend/                     # React + Vite TypeScript Application
+├── frontend/                     # Next.js 16 + React 19 Application
 │   ├── package.json              # Frontend dependencies and scripts
-│   ├── vite.config.ts            # Vite configuration
-│   ├── .oxlintrc.json            # Oxlint rule configuration
-│   └── src/                      # React source code
-│       ├── App.tsx               # Main application router
-│       ├── api/                  # API client helpers (fetch wrappers)
-│       └── pages/                # Page views
-│           ├── homepage/         # Landing hero page
-│           └── userinput/        # Interactive API testing view
+│   ├── next.config.ts            # Next.js configuration
+│   ├── components.json           # shadcn/ui configuration
+│   ├── app/                      # Next.js App Router (pages & layouts)
+│   │   ├── layout.tsx            # Root layout component
+│   │   ├── page.tsx              # Main entry page
+│   │   ├── globals.css           # Global Tailwind CSS styles
+│   │   └── homepage/             # Homepage view
+│   ├── components/               # Reusable UI components (shadcn/ui, Base UI)
+│   └── lib/                      # Utility functions & helpers
 └── README.md                     # Repository documentation
 ```
 
@@ -150,18 +153,12 @@ Ensure you have the following installed on your machine:
    npm install
    ```
 
-3. **Configure Environment Variables**:
-   Create or verify the `.env` file in the `frontend/` directory:
-   ```env
-   VITE_URL=localhost:8000
-   ```
-
-4. **Start the Vite Development Server**:
+3. **Start the Next.js Development Server**:
    ```bash
    npm run dev
    ```
 
-   Open your browser and navigate to `http://localhost:5173`.
+   Open your browser and navigate to `http://localhost:3000`.
 
 ---
 
@@ -184,7 +181,7 @@ FastAPI automatically generates interactive API documentation. Once the backend 
 
 ---
 
-## 🧪 Testing
+## 🧪 Testing & Linting
 
 ### Backend Unit Tests
 
@@ -197,7 +194,7 @@ uv run pytest
 
 ### Frontend Linting
 
-Run Oxlint to check code format and type constraints:
+Run ESLint to verify code quality and formatting:
 
 ```bash
 cd frontend
@@ -210,4 +207,5 @@ npm run lint
 
 Distributed under the MIT License. See [`LICENSE`](LICENSE) for more details.
 
-Developed with ❤️ by **[haribhuva](https://github.com/haribhuva05)**.
+Developed with ❤️ by **[haribhuva](https://github.com/haribhuva)**.
+
