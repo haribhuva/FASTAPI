@@ -37,12 +37,11 @@ A modern, full-stack web application workspace combining a high-performance **Fa
 ## ⚡ Features
 
 - **High-Performance FastAPI Backend**: Async-ready Python backend powered by Uvicorn and Pydantic v2 validation.
+- **PostgreSQL + SQLAlchemy Async**: `asyncpg` engine with auto table-create on startup (dev only, Alembic later).
 - **Modern Next.js 16 Frontend**: Built with React 19, TypeScript, Next.js App Router, Tailwind CSS v4, and shadcn/ui components.
 - **Blazing Fast Package Management**: Python dependencies managed with **[uv](https://github.com/astral-sh/uv)** for fast virtual environment management and deterministic locks.
-- **Layered Architecture**: Clean separation of concerns across API endpoints, data models, services, and web routers.
-- **Interactive UI Testing**: Dynamic forms and components for real-time testing of backend API responses.
+- **Minimal Layered Base**: `api` / `db` / `service` / `constants` — add modules as development goes further.
 - **Built-in API Docs**: Auto-generated interactive OpenAPI docs available via Swagger UI and ReDoc.
-- **Code Quality & Testing**: Configured with `pytest` & `black` for backend testing/formatting, and `ESLint` for frontend linting.
 
 ---
 
@@ -76,14 +75,15 @@ FASTAPI/
 ├── backend/                      # FastAPI Python Application
 │   ├── pyproject.toml            # Backend dependencies & scripts configuration
 │   ├── uv.lock                   # Deterministic package lockfile
-│   └── src/                      # Source code
-│       ├── main.py               # FastAPI entrypoint & CORS middleware configuration
-│       ├── api/                  # API endpoints and middleware
-│       │   └── endpoints/        # Route controllers (e.g. /hi, /agent, /header)
-│       ├── model/                # Pydantic data schemas (Tag, TagIn, TagOut)
-│       ├── service/              # Business logic & in-memory services
-│       ├── web/                  # Router handlers
-│       └── test/                 # Test suite & pytest fixtures
+│   ├── .env                      # DB_URL (e.g. postgresql+asyncpg://...)
+│   ├── README.md                 # Backend DB setup guide
+│   └── app/                      # Source code
+│       ├── main.py               # FastAPI entrypoint + lifespan (creates tables)
+│       ├── constants/            # Env config (DB_URL)
+│       ├── db/                   # engine.py, model.py (Base, Login, Task)
+│       ├── api/v1/endpoints/     # Route controllers (auth.py)
+│       ├── service/              # Business logic (add as you go)
+│       └── test/                 # Tests (add as you go)
 ├── frontend/                     # Next.js 16 + React 19 Application
 │   ├── package.json              # Frontend dependencies and scripts
 │   ├── next.config.ts            # Next.js configuration
@@ -132,12 +132,13 @@ Ensure you have the following installed on your machine:
    ```
 
 3. **Start the FastAPI Development Server**:
-   Using `uv`:
-   ```bash
-   uv run uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
-   ```
-   
-   The backend API will now be running at `http://localhost:8000`.
+    Using `uv`:
+    ```bash
+    uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    ```
+    
+    The backend API will now be running at `http://localhost:8000`.
+    Tables are auto-created on startup via `lifespan`. See `backend/README.md` for manual DB init.
 
 ---
 
@@ -169,15 +170,8 @@ FastAPI automatically generates interactive API documentation. Once the backend 
 - **Swagger UI**: [http://localhost:8000/docs](http://localhost:8000/docs)
 - **ReDoc**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
 
-### Summary of Key Endpoints
-
-| Method | Endpoint | Description | Sample Payload / Request |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/hi` | Returns greeting message | `{ "who": "World" }` |
-| `POST` | `/agent` | Returns client User-Agent header | `Header: User-Agent` |
-| `GET` | `/header/{name}/{value}` | Dynamic custom response header | Path params: `name`, `value` |
-| `POST` | `/` | Create a new tag entry | `{ "tag": "sample-tag" }` |
-| `GET` | `/{tag_str}` | Retrieve tag details | Path param: `tag_str` |
+Current endpoints live under `backend/app/api/v1/endpoints/` (e.g. `POST /login`).
+Add new routers there as development goes further.
 
 ---
 

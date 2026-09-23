@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .api.v1.endpoints.auth import auth_router
 from .db.engine import async_engine
-from .db.model import Base
+from .models import Base
 
 
 @asynccontextmanager
@@ -31,10 +31,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(auth_router)
+app.include_router(auth_router, tags=["Authentication"])
+
 
 
 if __name__ == "__main__":
+
     import uvicorn
 
     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
